@@ -5,6 +5,6 @@ grafana.ini:
     enabled: true
   security:
     allow_embedding: true
-    cookie_samesite: disabled
+    cookie_samesite: lax
   feature_toggles:
     publicDashboards: true
