@@ -1,0 +1,28 @@
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: grafana-ingress-backendconfig
+spec:
+  healthCheck:
+    checkIntervalSec: 15
+    port: 3000
+    type: HTTPS
+    requestPath: /
+---    
+# https://cloud.google.com/kubernetes-engine/docs/tutorials/configuring-domain-name-static-ip#use_an_ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: grafana
+    cloud.google.com/backend-config: '{"default": "grafana-ingress-backendconfig"}'
+  labels:
+    app: grafana
+spec:
+  defaultBackend:
+    service:
+      name: grafana-svc-http
+      port:
+        number: 3000
+---

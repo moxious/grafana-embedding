@@ -1,0 +1,10 @@
+grafana.ini:
+  default:
+    instance_name: grafana.o11y.party
+  auth.basic:
+    enabled: true
+  security:
+    allow_embedding: true
+    cookie_samesite: disabled
+  feature_toggles:
+    publicDashboards: true
