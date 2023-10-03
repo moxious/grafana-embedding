@@ -1,3 +1,5 @@
+. .env
+
 helm repo add grafana https://grafana.github.io/helm-charts &&
   helm repo update &&
   helm upgrade --install grafana-k8s-monitoring grafana/k8s-monitoring \
@@ -7,16 +9,16 @@ cluster:
 
 externalServices:
   prometheus:
-    host: "https://prometheus-prod-13-prod-us-east-0.grafana.net"
+    host: "$PROM_ENDPOINT"
     basicAuth:
-      username: "746141"
-      password: "glc_eyJvIjoiNzgyMzM2IiwibiI6InRlc3R5MiIsImsiOiI0Njl6TTBQajQzUndUQ2pxQ3QyNjZLNmoiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ=="
+      username: "$PROM_USERNAME"
+      password: "$PROM_PASSWORD"
 
   loki:
-    host: "https://logs-prod-006.grafana.net"
+    host: "$LOGS_ENDPOINT"
     basicAuth:
-      username: "372040"
-      password: "glc_eyJvIjoiNzgyMzM2IiwibiI6InRlc3R5MiIsImsiOiI0Njl6TTBQajQzUndUQ2pxQ3QyNjZLNmoiLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ=="
+      username: "$LOGS_USERNAME"
+      password: "$LOGS_PASSWORD"
 
 opencost:
   opencost:
@@ -24,5 +26,5 @@ opencost:
       defaultClusterId: "testy"
     prometheus:
       external:
-        url: "https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom"
+        url: "$PROM_ENDPOINT"
 EOF
