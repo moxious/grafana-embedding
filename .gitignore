@@ -1,0 +1,5 @@
+.env
+npm_modules
+bin
+include
+lib

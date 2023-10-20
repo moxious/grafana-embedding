@@ -1,11 +1,17 @@
 . .env
 
+kubectl create namespace k8s-o11y
+
 helm repo add grafana https://grafana.github.io/helm-charts &&
   helm repo update &&
   helm upgrade --install grafana-k8s-monitoring grafana/k8s-monitoring \
-    --namespace "default" --create-namespace --values - <<EOF
+    --namespace "k8s-o11y" --create-namespace --values - <<EOF
 cluster:
-  name: "testy"
+  name: "$CLUSTER"
+
+grafana-agent:
+  crds:
+    create: false
 
 externalServices:
   prometheus:
@@ -23,7 +29,7 @@ externalServices:
 opencost:
   opencost:
     exporter:
-      defaultClusterId: "testy"
+      defaultClusterId: "$CLUSTER"
     prometheus:
       external:
         url: "$PROM_ENDPOINT"

@@ -15,3 +15,17 @@ Out of scope of the automation in this repo:
 - Setting 2 static IP addresses in Google Cloud
 - Associating those addresses with the names `portal.o11y.party` and `grafana.o11y.party`, so that those services can resolve under those names.
 
+## Configuration
+
+You will need to create a local .env file with secrets that looks like this:
+
+PROJECT=dev-advocacy-380120
+REGION=us-east1
+CLUSTER=embedding
+PROM_USERNAME=
+PROM_ENDPOINT=
+PROM_PASSWORD=
+LOGS_USERNAME=
+LOGS_ENDPOINT=
+LOGS_PASSWORD=
+GRAFANA_CLOUD_TOKEN=
