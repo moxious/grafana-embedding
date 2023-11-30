@@ -6,7 +6,7 @@ gcloud container --project $PROJECT clusters create \
     $CLUSTER --region $REGION --release-channel "regular" \
     --network "projects/$PROJECT/global/networks/default" \
     --num-nodes 1 \
-    --subnetwork "projects/$PROJECT/regions/us-east1/subnetworks/default" \
+    --subnetwork "projects/$PROJECT/regions/$REGION/subnetworks/default" \
     --cluster-ipv4-cidr "/17" 
 
 gcloud container clusters get-credentials $CLUSTER --region $REGION
